@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -33,9 +34,8 @@ namespace LogFileViewer
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Start();
 
-            logFile = new LogFile(@"test.txt");
-
-            Update();
+            //logFile = new LogFile(@"test.txt");
+            //Update();
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -57,12 +57,26 @@ namespace LogFileViewer
 
         private void LabelSettings_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("111");
+            System.Windows.Forms.MessageBox.Show("111");
         }
 
         private void LabelOpen_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("Открыть файл");
+            string filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    logFile = new LogFile(openFileDialog.FileName);
+                    Update();
+                }
+            }
         }
     }
 }

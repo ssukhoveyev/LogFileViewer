@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LogFileViewer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="548.333" Width="1335.185" Background="#FF191919" FontFamily="JetBrains Mono" FontSize="14">
+        Title="Log File Viewer" Height="548.333" Width="1335.185" Background="#FF191919" FontFamily="JetBrains Mono" FontSize="14">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="textBox" Margin="10" TextWrapping="Wrap" FontFamily="JetBrains Mono" FontSize="14" Grid.Column="1" Foreground="LightGray" AllowDrop="True" IsReadOnly="True">
+        <ScrollViewer Grid.Column="1" >
+        <TextBox x:Name="textBox" Margin="0" TextWrapping="Wrap" FontFamily="JetBrains Mono" FontSize="14" Foreground="LightGray" AllowDrop="True" IsReadOnly="True">
             <TextBox.Style>
                 <Style BasedOn="{StaticResource {x:Type TextBox}}" TargetType="{x:Type TextBox}">
                     <Setter Property="Template">
@@ -36,6 +37,7 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
+        </ScrollViewer>
         <StackPanel Margin="10,10,10,10" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left">
             <Label x:Name="LabelOpen" Foreground="#FF757ADA" MouseDown="LabelOpen_MouseDown">Открыть</Label>
             <Label x:Name="LabelSettings" Foreground="#FF757ADA" MouseDown="LabelSettings_MouseDown">Настройки</Label>
