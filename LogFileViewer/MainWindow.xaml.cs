@@ -1,20 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using LogFileViewer.Properties;
+using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace LogFileViewer
@@ -34,8 +22,11 @@ namespace LogFileViewer
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Start();
 
-            //logFile = new LogFile(@"test.txt");
-            //Update();
+            if (Settings.Default.PathFile != String.Empty && System.IO.File.Exists(Settings.Default.PathFile))
+            {
+                logFile = new LogFile(Settings.Default.PathFile);
+                Update();
+            }
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -75,6 +66,8 @@ namespace LogFileViewer
                 {
                     logFile = new LogFile(openFileDialog.FileName);
                     Update();
+                    Settings.Default.PathFile = openFileDialog.FileName;
+                    Settings.Default.Save();
                 }
             }
         }
