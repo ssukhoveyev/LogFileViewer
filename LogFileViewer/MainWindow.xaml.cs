@@ -53,6 +53,18 @@ namespace LogFileViewer
 
         private void LabelOpen_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Controls.MenuItem mi = (System.Windows.Controls.MenuItem)sender;
+            if (mi.Header.ToString() == "Открыть")
+                OpenFile_Click();
+        }
+
+        private void OpenFile_Click()
+        {
             string filePath = string.Empty;
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
