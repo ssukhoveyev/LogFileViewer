@@ -46,16 +46,6 @@ namespace LogFileViewer
             textBox.Text = logFile.logData;
         }
 
-        private void LabelSettings_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            System.Windows.Forms.MessageBox.Show("111");
-        }
-
-        private void LabelOpen_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            
-        }
-
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Controls.MenuItem mi = (System.Windows.Controls.MenuItem)sender;
