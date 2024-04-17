@@ -5,5 +5,8 @@
     <Setting Name="PathFile" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="Codepage" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1251</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

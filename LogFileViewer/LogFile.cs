@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LogFileViewer.Properties;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -31,7 +32,15 @@ namespace LogFileViewer
 
         public void Update()
         {
-            logData = File.ReadAllText(this.filePath, Encoding.GetEncoding(1251));
+            int codepage;
+
+
+            //codepage = 65001;//UTF-8
+            //codepage = 1251;//Windows-1251
+
+            codepage = Settings.Default.Codepage;
+
+            logData = File.ReadAllText(this.filePath, Encoding.GetEncoding(codepage)); 
             LastWriteTime = File.GetLastWriteTime(this.filePath);
         }
     }

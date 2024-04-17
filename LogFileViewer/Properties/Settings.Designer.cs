@@ -34,5 +34,17 @@ namespace LogFileViewer.Properties {
                 this["PathFile"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1251")]
+        public int Codepage {
+            get {
+                return ((int)(this["Codepage"]));
+            }
+            set {
+                this["Codepage"] = value;
+            }
+        }
     }
 }

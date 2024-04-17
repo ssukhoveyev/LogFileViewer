@@ -51,6 +51,8 @@ namespace LogFileViewer
             System.Windows.Controls.MenuItem mi = (System.Windows.Controls.MenuItem)sender;
             if (mi.Header.ToString() == "Открыть")
                 OpenFile_Click();
+            if (mi.Header.ToString() == "Настройки")
+                Config_Click();
         }
 
         private void OpenFile_Click()
@@ -72,6 +74,12 @@ namespace LogFileViewer
                     Settings.Default.Save();
                 }
             }
+        }
+
+        private void Config_Click()
+        {
+            WindowConfig win2 = new WindowConfig();
+            win2.Show();
         }
     }
 }
