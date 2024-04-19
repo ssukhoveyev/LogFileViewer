@@ -60,7 +60,7 @@
             <!-- Template="{StaticResource LeftMenuItem}"*/-->
         </Menu>
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
-            <ComboBox x:Name="cbCodepage" Width="150" Margin="5,3,5,3" SelectionChanged="cbCodepage_SelectionChanged">
+            <ComboBox x:Name="cbCodepage" Width="150" Margin="0,3,5,3" SelectionChanged="cbCodepage_SelectionChanged">
                 <ComboBoxItem IsSelected="True">UTF-8</ComboBoxItem>
                 <ComboBoxItem >Windows-1251</ComboBoxItem>
             </ComboBox>
