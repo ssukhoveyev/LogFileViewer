@@ -22,6 +22,12 @@ namespace LogFileViewer
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Start();
 
+            switch (Settings.Default.Codepage)
+            {
+                case 65001: cbCodepage.SelectedIndex = 0; break;
+                case 1251: cbCodepage.SelectedIndex = 1; break;
+            }
+
             if (Settings.Default.PathFile != String.Empty && System.IO.File.Exists(Settings.Default.PathFile))
             {
                 logFile = new LogFile(Settings.Default.PathFile);
@@ -44,6 +50,7 @@ namespace LogFileViewer
         private void Update()
         {
             textBox.Text = logFile.logData;
+            labelFileName.Content = logFile.filePath;
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -51,8 +58,6 @@ namespace LogFileViewer
             System.Windows.Controls.MenuItem mi = (System.Windows.Controls.MenuItem)sender;
             if (mi.Header.ToString() == "Открыть")
                 OpenFile_Click();
-            if (mi.Header.ToString() == "Настройки")
-                Config_Click();
         }
 
         private void OpenFile_Click()
@@ -76,10 +81,20 @@ namespace LogFileViewer
             }
         }
 
-        private void Config_Click()
+        private void cbCodepage_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            WindowConfig win2 = new WindowConfig();
-            win2.Show();
+            switch (cbCodepage.SelectedIndex)
+            {
+                case 0: Settings.Default.Codepage = 65001; break;
+                case 1: Settings.Default.Codepage = 1251; break;
+            }
+            Settings.Default.Save();
+
+            if (logFile != null)
+            {
+                logFile.Update();
+                Update();
+            }
         }
     }
 }

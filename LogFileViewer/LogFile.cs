@@ -34,10 +34,6 @@ namespace LogFileViewer
         {
             int codepage;
 
-
-            //codepage = 65001;//UTF-8
-            //codepage = 1251;//Windows-1251
-
             codepage = Settings.Default.Codepage;
 
             logData = File.ReadAllText(this.filePath, Encoding.GetEncoding(codepage)); 

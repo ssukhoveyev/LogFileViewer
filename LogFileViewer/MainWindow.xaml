@@ -16,7 +16,13 @@
             <ColumnDefinition Width="150"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ScrollViewer Grid.Column="1" >
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="30"/>
+            <RowDefinition />
+            <RowDefinition  Height="30"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="labelFileName" Grid.Column="1" Grid.Row="0" Foreground="#FF6BC6F9">...</Label>
+        <ScrollViewer Grid.Column="1" Grid.Row="1">
             <TextBox x:Name="textBox" Margin="0" TextWrapping="Wrap" FontFamily="JetBrains Mono" FontSize="14" Foreground="LightGray" AllowDrop="True" IsReadOnly="True">
                 <TextBox.Style>
                     <Style BasedOn="{StaticResource {x:Type TextBox}}" TargetType="{x:Type TextBox}">
@@ -43,16 +49,22 @@
                 </TextBox.Style>
             </TextBox>
         </ScrollViewer>
-        <Menu Background="Transparent" Margin="0,0,0,0">
+        <Menu Background="Transparent" Margin="0,0,0,0" Grid.Row="1" Grid.Column="0" >
             <Menu.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel Orientation="Vertical" />
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
 
-            <MenuItem Header="Открыть" Click="MenuItem_Click" Foreground="LightGray"/>
-            <MenuItem Header="Настройки" Click="MenuItem_Click" Foreground="LightGray" />
+            <MenuItem Header="Открыть" Click="MenuItem_Click" Foreground="#FF787EF1"/>
             <!-- Template="{StaticResource LeftMenuItem}"*/-->
         </Menu>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
+            <ComboBox x:Name="cbCodepage" Width="150" Margin="5,3,5,3" SelectionChanged="cbCodepage_SelectionChanged">
+                <ComboBoxItem IsSelected="True">UTF-8</ComboBoxItem>
+                <ComboBoxItem >Windows-1251</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        
     </Grid>
 </Window>
