@@ -32,11 +32,17 @@ namespace LogFileViewer
 
         public void Update()
         {
-            int codepage;
+            int codepage = Settings.Default.Codepage;
 
-            codepage = Settings.Default.Codepage;
+            //logData = File.ReadAllText(this.filePath, Encoding.GetEncoding(codepage)); 
+            //LastWriteTime = File.GetLastWriteTime(this.filePath);
 
-            logData = File.ReadAllText(this.filePath, Encoding.GetEncoding(codepage)); 
+            FileInfo log = new FileInfo(this.filePath);
+            using (var streamReader = new StreamReader(log.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), Encoding.GetEncoding(codepage)))
+            {
+                logData = streamReader.ReadToEnd();
+            }
+
             LastWriteTime = File.GetLastWriteTime(this.filePath);
         }
     }

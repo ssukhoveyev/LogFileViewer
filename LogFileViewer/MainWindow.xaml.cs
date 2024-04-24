@@ -16,22 +16,30 @@ namespace LogFileViewer
         LogFile logFile;
         public MainWindow()
         {
-            InitializeComponent();
-            timer = new DispatcherTimer();
-            timer.Tick += new EventHandler(timer_Tick);
-            timer.Interval = new TimeSpan(0, 0, 1);
-            timer.Start();
-
-            switch (Settings.Default.Codepage)
+            try
             {
-                case 65001: cbCodepage.SelectedIndex = 0; break;
-                case 1251: cbCodepage.SelectedIndex = 1; break;
+                InitializeComponent();
+                timer = new DispatcherTimer();
+                timer.Tick += new EventHandler(timer_Tick);
+                timer.Interval = new TimeSpan(0, 0, 1);
+                timer.Start();
+
+                switch (Settings.Default.Codepage)
+                {
+                    case 65001: cbCodepage.SelectedIndex = 0; break;
+                    case 1251: cbCodepage.SelectedIndex = 1; break;
+                }
+
+                if (Settings.Default.PathFile != String.Empty && System.IO.File.Exists(Settings.Default.PathFile))
+                {
+                    logFile = new LogFile(Settings.Default.PathFile);
+                    Update();
+                }
             }
-
-            if (Settings.Default.PathFile != String.Empty && System.IO.File.Exists(Settings.Default.PathFile))
+            catch (Exception e)
             {
-                logFile = new LogFile(Settings.Default.PathFile);
-                Update();
+                System.Windows.Forms.MessageBox.Show(e.Message);
+                throw;
             }
         }
 
