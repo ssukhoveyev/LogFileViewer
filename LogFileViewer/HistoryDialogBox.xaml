@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LogFileViewer"
         mc:Ignorable="d"
-        Title="HistoryDialogBox" Height="300" Width="300">
+        Title="HistoryDialogBox" Height="323.377" Width="540.779" Background="#FF191919" FontFamily="JetBrains Mono" FontSize="14">
     <Grid>
-        <ListBox x:Name="listBox" Margin="9,9,8,34" MouseDoubleClick="listBox_MouseDoubleClick"/>
+        <ListBox x:Name="listBox" Margin="9,9,8,34" FontFamily="JetBrains Mono" FontSize="14" Foreground="LightGray" MouseDoubleClick="listBox_MouseDoubleClick" Background="#FF2E2E2E" BorderThickness="0"/>
         <Button x:Name="buttonOk" Content="OK" Margin="0,0,89,8" VerticalAlignment="Bottom" Click="buttonOk_Click" HorizontalAlignment="Right" Width="75"/>
         <Button x:Name="buttonCancel" Content="Отмена" HorizontalAlignment="Right" Margin="0,0,8,8" VerticalAlignment="Bottom" Width="75" Click="buttonCancel_Click"/>
     </Grid>
