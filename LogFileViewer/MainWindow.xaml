@@ -57,6 +57,7 @@
             </Menu.ItemsPanel>
 
             <MenuItem Header="Открыть" Click="MenuItem_Click" Foreground="#FF787EF1"/>
+            <MenuItem Header="История" Click="MenuItem_Click" Foreground="#FF787EF1"/>
             <!-- Template="{StaticResource LeftMenuItem}"*/-->
         </Menu>
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">

@@ -1,5 +1,6 @@
 ﻿using LogFileViewer.Properties;
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -66,6 +67,8 @@ namespace LogFileViewer
             System.Windows.Controls.MenuItem mi = (System.Windows.Controls.MenuItem)sender;
             if (mi.Header.ToString() == "Открыть")
                 OpenFile_Click();
+            if (mi.Header.ToString() == "История")
+                OpenHistory_Click();
         }
 
         private void OpenFile_Click()
@@ -83,8 +86,35 @@ namespace LogFileViewer
                 {
                     logFile = new LogFile(openFileDialog.FileName);
                     Update();
+
+                    HistoryCls history = new HistoryCls();
+                    history.AddFile(openFileDialog.FileName);
+
                     Settings.Default.PathFile = openFileDialog.FileName;
                     Settings.Default.Save();
+                }
+            }
+        }
+
+        private void OpenHistory_Click()
+        {
+            HistoryDialogBox dlg = new HistoryDialogBox();
+            //dlg.Owner = this;
+            dlg.ShowDialog();
+
+            if(dlg.DialogResult && !String.IsNullOrEmpty(dlg.filePath))
+            {
+                if (File.Exists(dlg.filePath))
+                {
+                    logFile = new LogFile(dlg.filePath);
+                    Update();
+
+                    Settings.Default.PathFile = dlg.filePath;
+                    Settings.Default.Save();
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("Неудалось открыть файл.");
                 }
             }
         }
